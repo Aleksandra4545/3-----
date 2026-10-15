@@ -34,7 +34,8 @@ Time& operator=(const Time& other) { // оператор присваив.
     return *this;
 }
 
-// Создание времени из часов, минут и секундstatic Time fromHMS(int hours, int minutes, int seconds) {
+// создание времени из часов, минут и секунд 
+static Time fromHMS(int hours, int minutes, int seconds) {
     if (hours < 0 || minutes < 0 || minutes > 59 ||
         seconds < 0 || seconds > 59) {
         throw invalid_argument("Некорректное значение времени");
@@ -42,5 +43,26 @@ Time& operator=(const Time& other) { // оператор присваив.
     return Time(static_cast<long long>(hours) * 3600LL + minutes * 60LL + seconds);
 
 }
+
+// нестандартный деструктор
+~Time() {
+    --objectCount;
+}
+
+long long getSeconds() const {
+    ++accessCount;
+    return totalSeconds;
+}
+
+int getAccessCount() const {
+    return accessCount;
+}
+
+static int getObjectCount() {
+    return objectCount;
+}
+
+}
+
 
 
