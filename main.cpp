@@ -135,6 +135,27 @@ Time& operator/=(const Time& other) {
     return *this;
 }
 
+// Бинарные операторы реализованы через составные
+friend Time operator+(Time lhs, const Time& rhs) {
+    lhs += rhs;
+    return lhs;
+}
+
+friend Time operator-(Time lhs, const Time& rhs) {
+    lhs -= rhs;
+    return lhs;
+}
+
+friend Time operator*(Time lhs, const Time& rhs) {
+    lhs *= rhs;
+    return lhs;
+}
+
+friend Time operator/(Time lhs, const Time& rhs) {
+    lhs /= rhs;
+    return lhs;
+}
+
 }
 
 
