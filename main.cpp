@@ -85,6 +85,32 @@ string toString() const {
     return out.str();
 }
 
+// Префиксный инкремент
+Time& operator++() {
+    ++totalSeconds;
+    return *this;
+}
+
+// Постфиксный инкремент
+Time operator++(int) {
+    Time oldValue(*this);
+    ++(*this);
+    return oldValue;
+}
+
+// Префиксный декремент
+Time& operator--() {
+    --totalSeconds;
+    return *this;
+}
+
+// Постфиксный декремент
+Time operator--(int) {
+    Time oldValue(*this);
+    --(*this);
+    return oldValue;
+}
+
 }
 
 
