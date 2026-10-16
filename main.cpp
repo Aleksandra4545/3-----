@@ -62,6 +62,29 @@ static int getObjectCount() {
     return objectCount;
 }
 
+// формат HH:MM:SS
+string toString() const {
+    ++accessCount;
+
+    const bool negative = totalSeconds < 0;
+    const unsigned long long absoluteValue = negative
+        ? static_cast<unsigned long long>(-(totalSeconds + 1)) + 1ULL
+        : static_cast<unsigned long long>(totalSeconds);
+
+    const unsigned long long hours = absoluteValue / 3600ULL;
+    const unsigned int minutes = static_cast<unsigned int>((absoluteValue % 3600ULL) / 60ULL);
+    const unsigned int seconds = static_cast<unsigned int>(absoluteValue % 60ULL);
+
+    ostringstream out;
+    if (negative) {
+        out << '-';
+    }
+    out << setfill('0') << setw(2) << hours << ':'
+        << setw(2) << minutes << ':'
+        << setw(2) << seconds;
+    return out.str();
+}
+
 }
 
 
