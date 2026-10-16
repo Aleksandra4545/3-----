@@ -111,6 +111,30 @@ Time operator--(int) {
     return oldValue;
 }
 
+// Составные арифметические операторы
+Time& operator+=(const Time& other) {
+    totalSeconds += other.totalSeconds;
+    return *this;
+}
+
+Time& operator-=(const Time& other) {
+    totalSeconds -= other.totalSeconds;
+    return *this;
+}
+
+Time& operator*=(const Time& other) {
+    totalSeconds *= other.totalSeconds;
+    return *this;
+}
+
+Time& operator/=(const Time& other) {
+    if (other.totalSeconds == 0) {
+        throw invalid_argument("Деление на ноль");
+    }
+    totalSeconds /= other.totalSeconds;
+    return *this;
+}
+
 }
 
 
