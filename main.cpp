@@ -184,3 +184,35 @@ public:
         return lhs.totalSeconds != rhs.totalSeconds;
     }
 };
+
+
+int Time::objectCount = 0;
+
+class Event {
+private:
+    string name;
+    Time start;
+    Time end;
+    Time plannedDuration;
+    Time actualDuration;
+
+public:
+    Event(const string& eventName,
+          const Time& eventStart,
+          const Time& eventEnd,
+          const Time& planned,
+          const Time& actual)
+        : name(eventName),
+          start(eventStart),
+          end(eventEnd),
+          plannedDuration(planned),
+          actualDuration(actual) {}
+
+    void print() const {
+        cout << "Событие: " << name << '\n'
+             << "  Начало: " << start.toString() << '\n'
+             << "  Окончание: " << end.toString() << '\n'
+             << "  Планируемая длительность: " << plannedDuration.toString() << '\n'
+             << "  Фактическая длительность: " << actualDuration.toString() << "\n\n";
+    }
+};
